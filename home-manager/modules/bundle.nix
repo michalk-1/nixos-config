@@ -3,5 +3,8 @@
     ./git.nix
     ./tmux.nix
     ./wezterm.nix
+    ./waybar.nix
+    ./hyprland.nix
+    ./hyprlock.nix
   ];
 }

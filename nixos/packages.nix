@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   nixpkgs.config = {
     allowUnfree = true;
-    # permittedInsecurePackages = ["python-2.7.18.8" "electron-25.9.0"];
+    permittedInsecurePackages = ["python-2.7.18.8" "electron-25.9.0"];
   };
 
   environment.systemPackages = with pkgs; [
@@ -57,14 +57,14 @@
     pavucontrol
 
     # Wayland stuff
-    # xwayland
-    # wl-clipboard
-    # cliphist
+    xwayland
+    wl-clipboard
+    cliphist
 
     # WMs and stuff
-    # hyprland
-    # xdg-desktop-portal-hyprland
-    # waybar
+    hyprland
+    xdg-desktop-portal-hyprland
+    waybar
 
     # Sound
     pipewire
