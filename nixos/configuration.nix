@@ -137,7 +137,7 @@
   programs.firefox.enable = true;
 
   ## Hyprland
-  # Install hyprland
+  # Install hyperland
   programs.hyprland = {
     enable = true;
   };

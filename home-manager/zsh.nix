@@ -23,8 +23,9 @@
     shellAliases =
       let
         flakeDir = "~/nixos-config";
+        configuration = "BD-1";
       in {
-      rb = "sudo nixos-rebuild switch --flake ${flakeDir}";
+      rb = "sudo nixos-rebuild switch --flake ${flakeDir}#${configuration}";
       upd = "nix flake update ${flakeDir}";
       upg = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}";
 

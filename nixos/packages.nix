@@ -23,7 +23,7 @@
     # python
     # ruby
     # libyaml
-    # gcc
+    gcc
     # gnumake
 
     # CLI utils
@@ -85,9 +85,9 @@
 
     # Other
     home-manager
-    # spice-vdagent
-    # libsForQt5.qtstyleplugin-kvantum
-    # libsForQt5.qt5ct
+    spice-vdagent
+    libsForQt5.qtstyleplugin-kvantum
+    libsForQt5.qt5ct
   ];
   
   fonts.packages = with pkgs; [
