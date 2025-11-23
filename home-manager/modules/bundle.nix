@@ -12,5 +12,7 @@
     ./bat.nix
     ./zoxide.nix
     ./btop.nix
+    ./fzf.nix
+    ./ripgrep.nix
   ];
 }

@@ -32,7 +32,6 @@
       };
 
       core = {
-        autocrlf = true;
         compression = 9;
         fsync = "none";
         whitespace = "error";

@@ -137,12 +137,4 @@
     profileExtra = ''
     '';
   };
-
-  programs.fzf = {
-    enable = true;
-  };
-
-  programs.ripgrep = {
-    enable = true;
-  };
 }
