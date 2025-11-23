@@ -16,18 +16,19 @@
       modules-center = [
         # TODO: check out if it's better than custom/music
         "custom/music"
-        "tray"
       ];
       modules-right = [
-        "pulseaudio"
-
         "power-profiles-daemon"
         "network"
         "cpu"
         "memory"
         "temperature"
 
+        "pulseaudio"
         "clock"
+
+        "tray"
+
         "custom/lock"
         "custom/power"
       ];
@@ -47,15 +48,23 @@
 
       cpu = {
         interval = 10;
-        format = "󰻠 {}%";
-        max-length = 10;
-        on-click = "";
+        # format = "󰻠 {}%";
+        format = "{usage}% ";
+        # max-length = 10;
+        min-length = 5;
+        format-alt-click = "click";
+        format-alt = "{icon0}{icon1}{icon2}{icon3} {usage:>2}% 󰍛";
+        format-icons = [
+            "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"
+        ];
+        on-click-right = "wezterm -e btop";
       };
       memory = {
         interval = 30;
         format = "  {}%";
         format-alt = " {used:0.1f}G";
         max-length = 10;
+        on-click-right = "wezterm -e btop";
       };
       "custom/music" = {
         format = "  {}";
@@ -84,6 +93,7 @@
         format-disconnected = "Disconnected ⚠";
         format-alt = "{ifname} = {ipaddr}/{cidr}";
       };
+
       clock = {
         timezone = "Europe/Warsaw";
         tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
@@ -112,6 +122,11 @@
           suspend = "systemctl suspend";
           hibernate = "systemctl hibernate";
         };
+      };
+      "custom/lock" = {
+        tooltip = false;
+        on-click = "hyprlock";
+        format = "";
       };
 
     }];

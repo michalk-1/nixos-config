@@ -48,6 +48,7 @@
     wev
     bluez
     bluez-tools
+    btop
 
     # GUI utils
     feh
@@ -98,14 +99,38 @@
     wireplumber
   ];
   
-  fonts.packages = with pkgs; [
-    jetbrains-mono
-    noto-fonts
-    noto-fonts-emoji
-    twemoji-color-font
-    font-awesome
-    powerline-fonts
-    powerline-symbols
-    pkgs.nerd-fonts.symbols-only
-  ];
+  fonts = with pkgs; {
+    packages = [
+      jetbrains-mono
+      noto-fonts
+      noto-fonts-emoji
+      twemoji-color-font
+      powerline-fonts
+      powerline-symbols
+
+      fira-code
+      fira-code-symbols
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
+
+      # Maple Mono (Ligature TTF unhinted)
+      maple-mono.truetype
+      # Maple Mono NF (Ligature unhinted)
+      maple-mono.NF-unhinted
+      # Maple Mono NF CN (Ligature unhinted)
+      maple-mono.NF-CN-unhinted
+
+      font-awesome
+      nerd-fonts.symbols-only
+    ];
+    enableDefaultPackages = true;
+    # fontconfig = {
+    #   enable = true;
+    #   defaultFonts = {
+    #     sansSerif = ["Noto Sans"];
+    #     monospace = ["DejaVu Sans Mono"];
+    #     emoji = ["Noto Color Emoji"];
+    #   };
+    # };
+  };
 }

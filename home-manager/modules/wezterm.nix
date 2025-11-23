@@ -36,7 +36,8 @@
 
       config.font_size = 20.0
 
-      config.color_scheme = 'Tokyo Night'
+      config.color_scheme = "Catppuccin Mocha" 
+      config.window_background_opacity = 0.6
 
       return config
     '';

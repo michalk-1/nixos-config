@@ -36,6 +36,7 @@
 
       ll = "ls -l";
       vim = "nvim";
+      v = "nvim";
       se = "sudoedit";
       ff = "fastfetch";
     };
@@ -43,10 +44,28 @@
     history.size = 10000;
     history.path = "${config.xdg.dataHome}/zsh/history";
 
-    oh-my-zsh = {
+    # Plugin manager
+    antidote = {
       enable = true;
-      plugins = [ "git" "sudo" "tmux" "direnv" "fzf" "command-not-found" "compleat" ];
-      theme = "risto";
+      plugins = [
+        # Completions
+        "mattmc3/ez-compinit"
+        "zsh-users/zsh-completions"
+        "zsh-users/zsh-autosuggestions"
+        "Aloxaf/fzf-tab"
+        "zdharma-continuum/fast-syntax-highlighting"
+        "so-fancy/diff-so-fancy"
+
+        # OMZ deps
+        "getantidote/use-omz"
+        "ohmyzsh/ohmyzsh path:plugins/git"
+        "ohmyzsh/ohmyzsh path:plugins/nvm"
+        "ohmyzsh/ohmyzsh path:plugins/extract"
+        "ohmyzsh/ohmyzsh path:plugins/command-not-found"
+        "ohmyzsh/ohmyzsh path:plugins/tmux"
+        "ohmyzsh/ohmyzsh path:plugins/sudo"
+      ];
+      useFriendlyNames = true;
     };
   };
 

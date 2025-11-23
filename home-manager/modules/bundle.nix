@@ -7,5 +7,6 @@
     ./hyprland.nix
     ./hyprlock.nix
     ./fuzzel.nix
+    ./starship.nix
   ];
 }
