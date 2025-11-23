@@ -7,16 +7,18 @@
   environment.systemPackages = with pkgs; [
     # Desktop apps
     discord
+    webcord
     gparted
     vscode
     wezterm
-    # brave
+    brave
     xfce.thunar
     xfce.xfce4-pulseaudio-plugin
     networkmanagerapplet
     blueman
     libreoffice-qt
     hunspell
+    spotify
 
     # Development
     # nodejs
@@ -63,18 +65,19 @@
 
     # WMs and stuff
     hyprland
-    xdg-desktop-portal-hyprland
+
+    # Waybar
     waybar
+    libappindicator
+    libappindicator-gtk3
+    libdbusmenu-gtk3
+    spdlog
 
     # Sound
     pipewire
     pulseaudio
     pamixer
-
-    # GPU stuff 
-    # amdvlk
-    # rocm-opencl-icd
-    # glaxnimate
+    playerctl
 
     # Screenshotting
     grim
@@ -88,6 +91,11 @@
     spice-vdagent
     libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
+
+    # Screensharing
+    xdg-desktop-portal
+    xdg-desktop-portal-hyprland
+    wireplumber
   ];
   
   fonts.packages = with pkgs; [

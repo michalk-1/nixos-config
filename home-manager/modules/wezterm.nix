@@ -4,11 +4,17 @@
     extraConfig = ''
       local wezterm = require('wezterm')
       local config = wezterm.config_builder()
+      local act = wezterm.action
 
       config.default_prog = {
         "/bin/sh",
 	"-c",
 	"tmux attach -t my_session || tmux new -s my_session"
+      }
+
+      config.keys = {
+        -- paste from the clipboard
+        { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
       }
 
       config.default_gui_startup_args = {'start', '--always-new-process'}

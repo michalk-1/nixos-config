@@ -163,6 +163,7 @@
   environment.systemPackages = with pkgs; [
     vim
     home-manager
+    killall
   ];
 
   # Set env variables

@@ -1,3 +1,5 @@
+{ home, ... }:
+
 {
   programs.kitty.enable = true;
   wayland.windowManager.hyprland = {
@@ -8,8 +10,10 @@
       "$mod" = "SUPER";
       "$mainMod" = "SUPER";
 
+      source = "~/.config/hypr/theme.conf";
+
       monitor = [
-        "HDMI-A-1,3440x1440,0x0,1"
+        "HDMI-A-1,3440x1440@240,0x0,1,bitdepth,10"
       ];
 
       xwayland = {
@@ -64,10 +68,10 @@
           new_optimizations = true;
         };
 
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        # drop_shadow = true;
+        # shadow_range = 4;
+        # shadow_render_power = 3;
+        # "col.shadow" = "rgba(1a1a1aee)";
       };
 
       animations = {
@@ -107,17 +111,15 @@
         disable_hyprland_logo = true;
       };
 
-      windowrule = [
-        "float, ^(imv)$"
-        "float, ^(mpv)$"
-      ];
+      windowrulev2 = "float, class:^(org.pulseaudio.pavucontrol)$";
 
       exec-once = [
-        "swww init"
-        "swww img ./nixos-wallpaper.webp"
+        "swww-daemon"
+        "swww img ~/.config/wallpapers/Cloudsnight.jpg"
         "waybar"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       ];
 
       workspace = [

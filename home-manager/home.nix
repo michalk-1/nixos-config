@@ -2,6 +2,7 @@
 {
   imports = [
     ./zsh.nix
+    ./import-home-dir.nix
     ./modules/bundle.nix
   ];
 
