@@ -54,7 +54,6 @@
     imv
     dmenu
     screenkey
-    mako
     gromit-mpx
     pavucontrol
 
@@ -91,6 +90,7 @@
     spice-vdagent
     libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
+    hyprland-qt-support
 
     # Screensharing
     xdg-desktop-portal
@@ -112,11 +112,9 @@
       nerd-fonts.fira-code
       nerd-fonts.droid-sans-mono
 
-      # Maple Mono (Ligature TTF unhinted)
+      maple-mono.variable
       maple-mono.truetype
-      # Maple Mono NF (Ligature unhinted)
       maple-mono.NF-unhinted
-      # Maple Mono NF CN (Ligature unhinted)
       maple-mono.NF-CN-unhinted
 
       font-awesome

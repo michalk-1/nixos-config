@@ -14,5 +14,6 @@
     ./btop.nix
     ./fzf.nix
     ./ripgrep.nix
+    ./mako.nix
   ];
 }

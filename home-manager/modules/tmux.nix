@@ -26,7 +26,7 @@
           # restore last saved environment (automatically)
           set -g @continuum-restore 'on'
           set -g @continuum-boot 'on'
-          set -g @continuum-boot-options 'alacritty,fullscreen'
+          set -g @continuum-boot-options 'wezterm,fullscreen'
         '';  
       }
       tmuxPlugins.better-mouse-mode
@@ -91,7 +91,7 @@
       bind-key S-Right swap-window -t +1
 
       # reload config file (change file location to your the tmux.conf you want to use)
-      bind r source-file ~/.tmux.conf
+      bind r source-file ~/.config/tmux/tmux.conf
 
       set -g status-bg default
       set -g status-style bg=default

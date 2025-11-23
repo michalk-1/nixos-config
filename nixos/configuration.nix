@@ -164,6 +164,7 @@
     vim
     home-manager
     killall
+    time
   ];
 
   # Set env variables

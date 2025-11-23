@@ -40,7 +40,7 @@
       tree = "eza -lah --tree --icons --level = 3 --ignore-glob = 'node_modules|.git|.DS_Store|.nvm|.turbo'";
 
       cat = "bat";
-      less = "bat --pager = 'less -R'";
+      less = "bat --pager = 'less -RF'";
 
       cd = "z";
       ".." = "z ..";
@@ -125,14 +125,14 @@
       # Utils 
       timezsh() {
         shell=''${1-$SHELL}
-        for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+        for i in $(seq 1 10); do time $shell -i -c exit; done
       }
       batdiff() {
-          git diff --name-only --relative --diff-filter=d | xargs bat --pager='less -R' --diff
+        git diff --name-only --relative --diff-filter=d | xargs bat --pager='less -R' --diff
       }
 
       # Fast Syntax Highlighting Colors
-      fast-theme XDG:catppuccin-mocha
+      fast-theme XDG:catppuccin-mocha > /dev/null
     '';
     profileExtra = ''
     '';

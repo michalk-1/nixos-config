@@ -6,12 +6,6 @@
       local config = wezterm.config_builder()
       local act = wezterm.action
 
-      config.default_prog = {
-        "/bin/sh",
-	"-c",
-	"tmux attach -t my_session || tmux new -s my_session"
-      }
-
       config.keys = {
         -- paste from the clipboard
         { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
@@ -26,11 +20,21 @@
       
       config.font = wezterm.font_with_fallback {
       {
-	family = 'JetBrains Mono',
-	weight = 'Medium',
-	harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
+        family = 'Maple Mono NF',
+        weight = 'Light',
+        harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
       },
-      { family = 'Terminus', weight = 'Bold' },
+      {
+        family = 'Maple Mono NF',
+        weight = 'Medium',
+        harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
+      },
+      {
+        family = 'Maple Mono NF',
+        weight = 'Bold',
+        harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
+      },
+      -- { family = 'Terminus', weight = 'Bold' },
       'Noto Color Emoji',
       }
 
