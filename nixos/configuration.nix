@@ -6,41 +6,10 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./graphics-configuration.nix
+      ./bootloader.nix
       ./modules/bundle.nix
       ./packages.nix
     ];
-
-  # Bootloader.
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-
-    loader.timeout = 2;
-
-    # Initrd
-    initrd.enable = true;
-    initrd.verbose = false;
-
-    # Plymouth Cattppuccin
-    plymouth = {
-      enable = true;
-      themePackages = [ pkgs.catppuccin-plymouth ];
-      theme = "catppuccin-macchiato";
-    };
-
-    # Enable 'Silent Boot'
-    consoleLogLevel = 0;
-    kernelParams = [
-      "quiet"
-      "splash"
-      "boot.shell_on_fail"
-      "loglevel=3"
-      "rd.systemd.show_status=false"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
-    ];
-  };
-
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -122,10 +91,7 @@
     isNormalUser = true;
     description = "Patryk Grabowski";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
+    packages = with pkgs; [];
     shell = pkgs.zsh;
   };
 
@@ -166,6 +132,9 @@
     killall
     time
     wlroots
+
+    # Enables v4l2loopback GUI utilities.
+    v4l-utils
   ];
 
   # Set env variables
@@ -184,25 +153,6 @@
     WLR_NO_HARDWARE_CURSORS = "1";
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -210,5 +160,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }

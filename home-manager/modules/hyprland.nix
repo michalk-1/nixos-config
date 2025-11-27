@@ -13,7 +13,7 @@
       source = "~/.config/hypr/theme.conf";
 
       monitor = [
-        "HDMI-A-1,3440x1440@240,0x0,1,bitdepth,10"
+        "HDMI-A-1,3440x1440@240,0x0,1"
       ];
 
       xwayland = {
@@ -123,22 +123,30 @@
       ];
 
       exec-once = [
+        # Wallpaper
         "swww-daemon"
         "swww img ~/.config/wallpapers/Cloudsnight.jpg"
+
+        # Bar
         "waybar"
+
+        # Clipboard
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
+
+        # Screen Sharing
         "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+
         # Autostart GUI apps
         "blueman-applet"
-        "[workspace 1 silent] wezterm"
-        "[workspace 2 silent] code"
-        "[workspace 3 silent] brave"
-        "[workspace 7 silent] 1password"
-        "[workspace 8 silent] steam"
-        "[workspace 9 silent] webcord"
-        "[workspace 0 silent] spotify"
+        # "[workspace 1 silent] wezterm"
+        # "[workspace 2 silent] code"
+        # "[workspace 3 silent] brave"
+        # "[workspace 7 silent] 1password"
+        # "[workspace 8 silent] steam"
+        # "[workspace 9 silent] webcord"
+        # "[workspace 0 silent] spotify"
       ];
 
       workspace = [

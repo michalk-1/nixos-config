@@ -73,6 +73,13 @@
     dconf
     sdbus-cpp
 
+    # Screensharing
+    xdg-utils
+    xdg-desktop-portal-hyprland
+    wireplumber
+    grim
+    slurp
+
     # Waybar
     waybar
     libappindicator
@@ -99,12 +106,6 @@
     libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
     hyprland-qt-support
-
-    # Screensharing
-    xdg-utils
-    xdg-desktop-portal
-    xdg-desktop-portal-hyprland
-    wireplumber
   ];
   
   fonts = with pkgs; {

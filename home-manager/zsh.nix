@@ -25,6 +25,7 @@
       in {
       # Nixos
       rb = "sudo nixos-rebuild switch --flake ${flakeDir}#${configuration}";
+      rbb = "sudo nixos-rebuild --install-bootloader boot --flake ${flakeDir}#${configuration}";
       upd = "nix flake update ${flakeDir}";
       upg = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}";
 
