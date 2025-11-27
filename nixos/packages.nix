@@ -6,7 +6,7 @@
 
   environment.systemPackages = with pkgs; [
     # Desktop apps
-    webcord
+    discord
     gparted
     vscode
     wezterm

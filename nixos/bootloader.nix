@@ -4,7 +4,7 @@
   boot = {
     loader = {
       systemd-boot.enable = true;
-      systemd-boot.console = "max";
+      systemd-boot.consoleMode = "max";
       timeout = 2;
 
       efi = {
