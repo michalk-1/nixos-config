@@ -117,7 +117,7 @@
         "workspace 1 silent, title:(wezterm)"
         "workspace 2 silent, class:(code)"
         "workspace 9 silent, class:(WebCord)"
-        "workspace 0 silent, class:(spotify)"
+        "workspace 0 silent, title:(Spotify Premium)"
       ];
 
       exec-once = [
