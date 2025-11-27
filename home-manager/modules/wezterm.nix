@@ -8,7 +8,7 @@
 
       config.keys = {
         -- paste from the clipboard
-        { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
+        -- { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
       }
 
       config.default_gui_startup_args = {'start', '--always-new-process'}
