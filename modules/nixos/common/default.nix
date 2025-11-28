@@ -5,6 +5,7 @@
   imports = [
     ./bootloader.nix
     ./fonts.nix
+    ./packages.nix
   ];
   
   catppuccin = {
@@ -100,6 +101,10 @@
     TERMINAL = "${pkgs.wezterm}/bin/wezterm";
     EDITOR = "nvim";
   };
+
+  # Enable the KDE Plasma Desktop Environment.
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   environment.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";

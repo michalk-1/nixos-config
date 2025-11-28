@@ -1,5 +1,5 @@
 {
-  programs.steam = {
+  programs.fuzzel = {
     enable = true;
   };
 }

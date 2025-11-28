@@ -16,7 +16,6 @@
   # Install hyperland
   programs.hyprland = {
     enable = true;
-    withUWSM = true;
   };
   # Install hyprlock
   programs.hyprlock.enable = true;

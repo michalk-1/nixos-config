@@ -37,7 +37,7 @@
       avatar = ./files/avatar/face;
       email = "grabowskip@icloud.com";
       fullName = "Patryk Grabowski";
-      name = "grapbowskip";
+      name = "grabowskip";
     };
     # "patryk.grabowski@iqvia.com" = {
     #   inherit (users.grabowskip)
@@ -102,8 +102,10 @@
     };
 
     homeConfigurations = {
-      "grabowskip@nixos" = mkHomeConfiguration "x86_64-linux" "grabowskip" "skocznia";
+      "grabowskip@skocznia" = mkHomeConfiguration "x86_64-linux" "grabowskip" "skocznia";
       "patryk.grabowskip@icloud.com@ZTDMWCFP3J5YY" = mkHomeConfiguration "aarch64-darwin" "patryk.grabowski@iqvia.com" "ZTDMWCFP3J5YY";
     };
+
+    overlays = import ./overlays { inherit inputs; };
   };
 }
