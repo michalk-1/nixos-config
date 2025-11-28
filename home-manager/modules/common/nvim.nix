@@ -1,8 +1,3 @@
-# {
-#   programs.neovim = {
-#     enable = true;
-#   };
-# }
 { config, lib, pkgs, ... }:
 
 {
