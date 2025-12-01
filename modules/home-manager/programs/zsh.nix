@@ -40,7 +40,7 @@
         );
         rbb = "sudo nixos-rebuild --install-bootloader boot --flake ${flakeDir}#${hostname}";
 
-        upd = "nix flake update ${flakeDir}";
+        upd = "nix flake update --flake ${flakeDir}";
         upg = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}#${hostname}";
 
         # Zellij
