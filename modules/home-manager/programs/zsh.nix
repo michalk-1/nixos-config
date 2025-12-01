@@ -53,8 +53,8 @@
         ll = "eza -lah --icons";
         tree = "eza -lah --tree --icons --level = 3 --ignore-glob = 'node_modules|.git|.DS_Store|.nvm|.turbo'";
 
-        cat = "bat";
-        less = "bat --pager = 'less -RF'";
+        cat = "bat --paging=never";
+        less = "bat";
 
         cd = "z";
         ".." = "z ..";
