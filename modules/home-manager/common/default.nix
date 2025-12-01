@@ -76,8 +76,9 @@
       postgresql_15
     ]
     ++ lib.optionals stdenv.isDarwin [
-      hidden-bar
-      raycast
+      # hidden-bar
+      # raycast
+      # stats
     ]
     ++ lib.optionals (!stdenv.isDarwin) [
       unzip

@@ -25,94 +25,115 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nix-darwin,
-    home-manager,
-    catppuccin,
-    solaar,
-    ...
-  }@inputs: 
-  let
-    inherit (self) outputs;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      catppuccin,
+      solaar,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
 
-# User configuration
-  users = {
-    grabowskip = {
-      avatar = ./files/avatar/face;
-      email = "grabowskip@icloud.com";
-      fullName = "Patryk Grabowski";
-      name = "grabowskip";
-    };
-    "patryk.grabowski@iqvia.com" = {
-      inherit (users.grabowskip)
-        avatar
-        fullName
-        ;
-      email = "patryk.grabowski@iqvia.com";
-      name = "patryk.grabowski@iqvia.com";
-    };
-  };
-
-# Function for NixOS system configuration
-  mkNixosConfiguration =
-    hostname: username:
-    nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs outputs hostname;
-        userConfig = users.${username};
-        nixosModules = "${self}/modules/nixos";
+      # User configuration
+      users = {
+        grabowskip = {
+          avatar = ./files/avatar/face;
+          email = "grabowskip@icloud.com";
+          fullName = "Patryk Grabowski";
+          name = "grabowskip";
+        };
+        "patryk.grabowski@iqvia.com" = {
+          inherit (users.grabowskip)
+            avatar
+            fullName
+            ;
+          email = "patryk.grabowski@iqvia.com";
+          name = "patryk.grabowski@iqvia.com";
+        };
       };
-      modules = [
-        catppuccin.nixosModules.catppuccin
-        solaar.nixosModules.default
-        ./hosts/${hostname}
-      ];
-    };
-# Function for nix-darwin system configuration
-  mkDarwinConfiguration =
-    hostname: username:
-    nix-darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-      specialArgs = {
-        inherit inputs outputs hostname;
-        userConfig = users.${username};
-        darwinModules = "${self}/modules/darwin";
+
+      # Function for NixOS system configuration
+      mkNixosConfiguration =
+        hostname: username:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs hostname;
+            userConfig = users.${username};
+            nixosModules = "${self}/modules/nixos";
+          };
+          modules = [
+            catppuccin.nixosModules.catppuccin
+            solaar.nixosModules.default
+            ./hosts/${hostname}
+          ];
+        };
+      # Function for nix-darwin system configuration
+      mkDarwinConfiguration =
+        hostname: username:
+        nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          specialArgs = {
+            inherit inputs outputs hostname;
+            userConfig = users.${username};
+            darwinModules = "${self}/modules/darwin";
+          };
+          modules = [
+            ./hosts/${hostname}
+          ];
+        };
+
+      # Function for Home Manager configuration (linux)
+      mkHomeConfiguration =
+        system: username: hostname:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { inherit system; };
+          extraSpecialArgs = {
+            inherit inputs outputs hostname;
+            userConfig = users.${username};
+            nhModules = "${self}/modules/home-manager";
+          };
+          modules = [
+            ./home/${username}/${hostname}
+            catppuccin.homeModules.catppuccin
+          ];
+        };
+
+      # Function for Home Manager configuration (linux)
+      mkDarwinHomeConfiguration =
+        system: username: hostname:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { inherit system; };
+          extraSpecialArgs = {
+            inherit inputs outputs hostname;
+            userConfig = users.${username};
+            nhModules = "${self}/modules/home-manager";
+          };
+          modules = [
+            ./home/${username}/${hostname}
+            catppuccin.homeModules.catppuccin
+          ];
+        };
+    in
+    {
+      nixosConfigurations = {
+        skocznia = mkNixosConfiguration "skocznia" "grabowskip";
       };
-      modules = [ ./hosts/${hostname} ];
-    };
 
-# Function for Home Manager configuration
-  mkHomeConfiguration =
-    system: username: hostname:
-    home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs { inherit system; };
-      extraSpecialArgs = {
-        inherit inputs outputs hostname;
-        userConfig = users.${username};
-        nhModules = "${self}/modules/home-manager";
+      darwinConfigurations = {
+        ZTDMWCFP3J5YY = mkDarwinConfiguration "ZTDMWCFP3J5YY" "patryk.grabowski@iqvia.com";
       };
-      modules = [
-        ./home/${username}/${hostname}
-        catppuccin.homeModules.catppuccin
-      ];
-    }; 
-  in
-  {
-    nixosConfigurations = {
-      skocznia = mkNixosConfiguration "skocznia" "grabowskip";
-    };
 
-    darwinConfigurations = {
-      ZTDMWCFP3J5YY = mkDarwinConfiguration "ZTDMWCFP3J5YY" "patryk.grabowski@iqvia.com";
-    };
+      homeConfigurations = {
+        "grabowskip@skocznia" = mkHomeConfiguration "x86_64-linux" "grabowskip" "skocznia";
+        "patryk.grabowski@iqvia.com@ZTDMWCFP3J5YY" =
+          mkDarwinHomeConfiguration "aarch64-darwin" "patryk.grabowski@iqvia.com"
+            "ZTDMWCFP3J5YY";
+      };
 
-    homeConfigurations = {
-      "grabowskip@skocznia" = mkHomeConfiguration "x86_64-linux" "grabowskip" "skocznia";
-      "patryk.grabowski@iqvia.com@ZTDMWCFP3J5YY" = mkHomeConfiguration "aarch64-darwin" "patryk.grabowski@iqvia.com" "ZTDMWCFP3J5YY";
+      overlays = import ./overlays { inherit inputs; };
     };
-
-    overlays = import ./overlays { inherit inputs; };
-  };
 }

@@ -1,12 +1,12 @@
 {
   nhModules,
   config,
-  home,
   ...
 }:
 {
   imports = [
     "${nhModules}/common"
+    "${nhModules}/darwin"
     ./packages.nix
   ];
 
