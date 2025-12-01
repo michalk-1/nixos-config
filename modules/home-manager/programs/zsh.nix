@@ -158,6 +158,8 @@
 
             # Fast Syntax Highlighting Colors
             fast-theme XDG:catppuccin-mocha > /dev/null
+
+            eval "$(fnm env --use-on-cd --shell zsh)"
     '';
     profileExtra = '''';
   };

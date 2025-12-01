@@ -14,7 +14,7 @@ return {
 
 					{ section = "header", pane = 1 },
 
-					{ icon = " ", title = "Recent Files", section = "recent_files", padding = 1 },
+					{ icon = " ", title = "Recent Files", section = "recent_files", padding = 1, cwd = true },
 					{ icon = " ", title = "Projects", section = "projects", padding = 1 },
 					{
 						icon = " ",

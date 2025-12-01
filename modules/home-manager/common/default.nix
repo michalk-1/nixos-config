@@ -68,6 +68,7 @@
       nix-index
       unzip
       openssl
+      fnm
     ]
     ++ lib.optionals stdenv.isDarwin [
       hidden-bar
