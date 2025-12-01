@@ -27,10 +27,9 @@
       # Bash
       bash-language-server
       # CSS
-      # css-lsp
       stylelint
       # Docker
-      # dockerfile-language-server
+      dockerfile-language-server-nodejs
       docker-compose-language-service
       # Astro
       astro-language-server
@@ -95,6 +94,7 @@
           vim-illuminate
           vim-startuptime
           which-key-nvim
+          copilot-lua
           {
             name = "LuaSnip";
             path = luasnip;

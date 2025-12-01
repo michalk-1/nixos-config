@@ -48,9 +48,9 @@
     "patryk.grabowski@iqvia.com" = {
       inherit (users.grabowskip)
         avatar
-        email
         fullName
         ;
+      email = "patryk.grabowski@iqvia.com";
       name = "patryk.grabowski@iqvia.com";
     };
   };
@@ -110,7 +110,7 @@
 
     homeConfigurations = {
       "grabowskip@skocznia" = mkHomeConfiguration "x86_64-linux" "grabowskip" "skocznia";
-      "patryk.grabowskip@icloud.com@ZTDMWCFP3J5YY" = mkHomeConfiguration "aarch64-darwin" "patryk.grabowski@iqvia.com" "ZTDMWCFP3J5YY";
+      "patryk.grabowski@iqvia.com@ZTDMWCFP3J5YY" = mkHomeConfiguration "aarch64-darwin" "patryk.grabowski@iqvia.com" "ZTDMWCFP3J5YY";
     };
 
     overlays = import ./overlays { inherit inputs; };

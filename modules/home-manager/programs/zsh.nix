@@ -1,4 +1,9 @@
-{ config, hostname, ... }:
+{
+  pkgs,
+  config,
+  hostname,
+  ...
+}:
 
 {
   programs.zsh = {
@@ -27,7 +32,12 @@
         flakeDir = "~/nixos-config";
       in
       {
-        rb = "sudo nixos-rebuild switch --flake ${flakeDir}#${hostname}";
+        rb = (
+          if pkgs.stdenv.isDarwin then
+            "sudo nix run nix-darwin -- switch --flake  ${flakeDir}#${hostname}"
+          else
+            "sudo nixos-rebuild switch --flake ${flakeDir}#${hostname}"
+        );
         rbb = "sudo nixos-rebuild --install-bootloader boot --flake ${flakeDir}#${hostname}";
 
         upd = "nix flake update ${flakeDir}";

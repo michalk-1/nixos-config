@@ -64,18 +64,6 @@
         interHinkContext = 10;
       };
 
-      transfer = {
-        fsckObjects = true;
-      };
-
-      receive = {
-        fsckObjects = true;
-      };
-
-      fetch = {
-        fsckObjects = true;
-      };
-
       branch = {
         sort = "-commiterdate";
       };
@@ -89,19 +77,19 @@
       };
 
       color.branch = {
-        current  = "magenta";
-        local    = "default";
-        remote   = "yellow";
+        current = "magenta";
+        local = "default";
+        remote = "yellow";
         upstream = "green";
-        plain    = "blue";
+        plain = "blue";
       };
-      
+
       color.diff = {
-        meta       = "black bold";
-        frag       = "magenta";
-        context    = "white";
+        meta = "black bold";
+        frag = "magenta";
+        context = "white";
         whitespace = "yellow reverse";
-        old        = "red";
+        old = "red";
       };
 
       color.decorate = {
@@ -113,7 +101,7 @@
     };
 
     ignores = [
-      "**/.envrc"  
+      "**/.envrc"
       "**/.direnv"
       "**/shell.nix"
       "**/gemset.nix"
