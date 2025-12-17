@@ -9,7 +9,16 @@ return {
 			servers = {
 				nil_ls = {},
 				nixd = {},
-				pyright = {},
+				-- pyright = {},
+				pyrefly = {
+					settings = {
+						python = {
+							pyrefly = {
+								displayTypeErrors = "force-on",
+							},
+						},
+					},
+				},
 				ruff = {},
 				ts_ls = {},
 				biome = {},

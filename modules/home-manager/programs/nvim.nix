@@ -19,6 +19,7 @@
       bandit
       ruff
       pyright
+      pyrefly
       isort
       # TypeScript
       biome
