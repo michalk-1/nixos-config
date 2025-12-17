@@ -7,7 +7,7 @@ return {
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
-				python = { "ruff", "isort" },
+				python = { "pyrefly", "isort" },
 				javascript = { "biome", "biome-organize-imports" },
 				typescript = { "biome", "biome-organize-imports" },
 				typescriptreact = { "biome", "biome-organize-imports" },

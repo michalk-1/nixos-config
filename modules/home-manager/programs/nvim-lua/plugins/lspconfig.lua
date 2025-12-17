@@ -9,7 +9,6 @@ return {
 			servers = {
 				nil_ls = {},
 				nixd = {},
-				-- pyright = {},
 				pyrefly = {
 					settings = {
 						python = {
@@ -19,7 +18,6 @@ return {
 						},
 					},
 				},
-				ruff = {},
 				ts_ls = {},
 				biome = {},
 				astro = {},
