@@ -42,13 +42,13 @@
           fullName = "Patryk Grabowski";
           name = "grabowskip";
         };
-        "patryk.grabowski@iqvia.com" = {
+        "michalkowalik" = {
           inherit (users.grabowskip)
             avatar
             fullName
             ;
-          email = "patryk.grabowski@iqvia.com";
-          name = "patryk.grabowski@iqvia.com";
+          email = "michalkowalik";
+          name = "michalkowalik";
         };
       };
 
@@ -119,13 +119,13 @@
       };
 
       darwinConfigurations = {
-        air-kw = mkDarwinConfiguration "air-kw" "patryk.grabowski@iqvia.com";
+        air-kw = mkDarwinConfiguration "air-kw" "michalkowalik";
       };
 
       homeConfigurations = {
         "grabowskip@skocznia" = mkHomeConfiguration "x86_64-linux" "grabowskip" "skocznia";
-        "patryk.grabowski@iqvia.com@air-kw" =
-          mkDarwinHomeConfiguration "aarch64-darwin" "patryk.grabowski@iqvia.com"
+        "michalkowalik@air-kw" =
+          mkDarwinHomeConfiguration "aarch64-darwin" "michalkowalik"
             "air-kw";
       };
 
