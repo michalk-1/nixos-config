@@ -1,5 +1,6 @@
 {
   description = "NixOS system configuration";
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 
@@ -114,6 +115,15 @@
         };
     in
     {
+      packages = forAllSystems (system:
+	let
+	  pkgs = import nixpkgs { inherit system; };
+	in
+	{
+	  default = pkgs.hello;
+	}
+      );
+
       nixosConfigurations = {
         skocznia = mkNixosConfiguration "skocznia" "grabowskip";
       };
