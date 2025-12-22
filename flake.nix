@@ -119,14 +119,14 @@
       };
 
       darwinConfigurations = {
-        ZTDMWCFP3J5YY = mkDarwinConfiguration "ZTDMWCFP3J5YY" "patryk.grabowski@iqvia.com";
+        air-kw = mkDarwinConfiguration "air-kw" "patryk.grabowski@iqvia.com";
       };
 
       homeConfigurations = {
         "grabowskip@skocznia" = mkHomeConfiguration "x86_64-linux" "grabowskip" "skocznia";
-        "patryk.grabowski@iqvia.com@ZTDMWCFP3J5YY" =
+        "patryk.grabowski@iqvia.com@air-kw" =
           mkDarwinHomeConfiguration "aarch64-darwin" "patryk.grabowski@iqvia.com"
-            "ZTDMWCFP3J5YY";
+            "air-kw";
       };
 
       overlays = import ./overlays { inherit inputs; };
