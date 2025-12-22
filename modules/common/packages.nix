@@ -9,5 +9,6 @@
     starship
     prettierd
     nodejs_22
+    silver-searcher
   ];
 }
