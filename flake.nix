@@ -27,6 +27,7 @@
       nix-darwin,
       home-manager,
       catppuccin,
+      devShells.aarch64-darwin,
       ...
     }@inputs:
     let
@@ -128,5 +129,9 @@
       };
 
       overlays = import ./overlays { inherit inputs; };
+
+      devShells.default = pkgs.mkShell {
+         buildInputs = [ pkgs.git ];
+      };
     };
 }
