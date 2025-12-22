@@ -27,11 +27,12 @@
       nix-darwin,
       home-manager,
       catppuccin,
-      devShells,
       ...
     }@inputs:
     let
       inherit (self) outputs;
+
+      forAllSystems = f: nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ] f;
 
       # User configuration
       users = {
@@ -130,8 +131,18 @@
 
       overlays = import ./overlays { inherit inputs; };
 
-      devShells.default = pkgs.mkShell {
-         buildInputs = [ pkgs.git ];
-      };
+      devShells = forAllSystems (system:
+	let
+	  pkgs = import nixpkgs { inherit system; };
+	in
+	{
+	  default = pkgs.mkShell {
+	    buildInputs = [
+	      pkgs.git
+	      pkgs.nodejs
+	    ];
+	  };
+	}
+      );
     };
 }
