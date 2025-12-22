@@ -27,7 +27,7 @@
       nix-darwin,
       home-manager,
       catppuccin,
-      devShells.aarch64-darwin,
+      devShells,
       ...
     }@inputs:
     let
