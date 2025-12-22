@@ -45,9 +45,9 @@
         "michalkowalik" = {
           inherit (users.grabowskip)
             avatar
-            fullName
             ;
           email = "michalkowalik";
+	  fullName = "Michał Kowalik";
           name = "michalkowalik";
         };
       };
