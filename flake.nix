@@ -47,7 +47,7 @@
           inherit (users.grabowskip)
             avatar
             ;
-          email = "michalkowalik";
+          email = "mich.kowalik@gmail.com";
 	  fullName = "Michał Kowalik";
           name = "michalkowalik";
         };
