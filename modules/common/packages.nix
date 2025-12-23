@@ -2,13 +2,14 @@
 {
   # Packages that will be installed in both NixOS and darwin
   environment.systemPackages = with pkgs; [
-    fnm
-    poetry
-    uv
     ffmpeg
-    starship
-    prettierd
+    fnm
     nodejs_22
+    poetry
+    prettierd
     silver-searcher
+    starship
+    tree
+    uv
   ];
 }
