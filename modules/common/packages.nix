@@ -5,7 +5,7 @@
     ffmpeg
     fnm
     nodejs_22
-    nvim
+    neovim
     poetry
     prettierd
     silver-searcher
