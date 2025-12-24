@@ -67,20 +67,38 @@
             ./hosts/${hostname}
           ];
         };
+
       # Function for nix-darwin system configuration
       mkDarwinConfiguration =
-        hostname: username:
-        nix-darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          specialArgs = {
-            inherit inputs outputs hostname;
-            userConfig = users.${username};
-            darwinModules = "${self}/modules/darwin";
-          };
-          modules = [
-            ./hosts/${hostname}
-          ];
-        };
+	hostname: username:
+	nix-darwin.lib.darwinSystem {
+	  system = "aarch64-darwin";
+
+	  specialArgs = {
+	    inherit inputs outputs hostname;
+	    userConfig = users.${username};
+	    darwinModules = "${self}/modules/darwin";
+	    nhModules = "${self}/modules/home-manager";
+	  };
+
+	  modules = [
+	    ./hosts/${hostname}
+
+	    # Enable Home Manager as a nix-darwin module
+	    home-manager.darwinModules.home-manager
+
+	    {
+	      # HM integration settings
+	      home-manager.useGlobalPkgs = true;
+	      home-manager.useUserPackages = true;
+
+	      # Your user’s HM config
+	      home-manager.users.${username} = import ./home/${username}/${hostname};
+	    }
+	  ];
+	};
+
+
 
       # Function for Home Manager configuration (linux)
       mkHomeConfiguration =
@@ -118,9 +136,6 @@
 
       homeConfigurations = {
         "grabowskip@skocznia" = mkHomeConfiguration "x86_64-linux" "grabowskip" "skocznia";
-        "michalkowalik@air-kw" =
-          mkDarwinHomeConfiguration "aarch64-darwin" "michalkowalik"
-            "air-kw";
       };
 
       overlays = import ./overlays { inherit inputs; };
