@@ -97,22 +97,6 @@
             catppuccin.homeModules.catppuccin
           ];
         };
-
-      # Function for Home Manager configuration (linux)
-      mkDarwinHomeConfiguration =
-        system: username: hostname:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { inherit system; };
-          extraSpecialArgs = {
-            inherit inputs outputs hostname;
-            userConfig = users.${username};
-            nhModules = "${self}/modules/home-manager";
-          };
-          modules = [
-            ./home/${username}/${hostname}
-            catppuccin.homeModules.catppuccin
-          ];
-        };
     in
     {
       packages = forAllSystems (system:
