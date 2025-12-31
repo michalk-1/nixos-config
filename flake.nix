@@ -48,7 +48,7 @@
             avatar
             ;
           email = "mich.kowalik@gmail.com";
-	  fullName = "Michał Kowalik";
+    fullName = "Michał Kowalik";
           name = "michalkowalik";
         };
       };
@@ -70,38 +70,38 @@
 
       # Function for nix-darwin system configuration
       mkDarwinConfiguration =
-	hostname: username:
-	nix-darwin.lib.darwinSystem {
-	  system = "aarch64-darwin";
+  hostname: username:
+  nix-darwin.lib.darwinSystem {
+    system = "aarch64-darwin";
 
-	  specialArgs = {
-	    inherit inputs outputs hostname;
-	    userConfig = users.${username};
-	    darwinModules = "${self}/modules/darwin";
-	    nhModules = "${self}/modules/home-manager";
-	  };
+    specialArgs = {
+      inherit inputs outputs hostname;
+      userConfig = users.${username};
+      darwinModules = "${self}/modules/darwin";
+      nhModules = "${self}/modules/home-manager";
+    };
 
-	  modules = [
-	    ./hosts/${hostname}
+    modules = [
+      ./hosts/${hostname}
 
-	    # Enable Home Manager as a nix-darwin module
-	    home-manager.darwinModules.home-manager
+      # Enable Home Manager as a nix-darwin module
+      home-manager.darwinModules.home-manager
 
-	    {
-	      # HM integration settings
-	      home-manager.useGlobalPkgs = true;
-	      home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                inherit inputs outputs hostname;
-                userConfig = users.${username};
-                nhModules = "${self}/modules/home-manager";
-              };
+      {
+        # HM integration settings
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.extraSpecialArgs = {
+          inherit inputs outputs hostname;
+          userConfig = users.${username};
+          nhModules = "${self}/modules/home-manager";
+        };
 
-	      # Your user’s HM config
-	      home-manager.users.${username} = import ./home/${username}/${hostname};
-	    }
-	  ];
-	};
+        # Your user’s HM config
+        home-manager.users.${username} = import ./home/${username}/${hostname};
+      }
+    ];
+  };
 
 
 
@@ -123,12 +123,12 @@
     in
     {
       packages = forAllSystems (system:
-	let
-	  pkgs = import nixpkgs { inherit system; };
-	in
-	{
-	  default = pkgs.hello;
-	}
+  let
+    pkgs = import nixpkgs { inherit system; };
+  in
+  {
+    default = pkgs.hello;
+  }
       );
 
       nixosConfigurations = {
@@ -146,17 +146,17 @@
       overlays = import ./overlays { inherit inputs; };
 
       devShells = forAllSystems (system:
-	let
-	  pkgs = import nixpkgs { inherit system; };
-	in
-	{
-	  default = pkgs.mkShell {
-	    buildInputs = [
-	      pkgs.git
-	      pkgs.nodejs
-	    ];
-	  };
-	}
+  let
+    pkgs = import nixpkgs { inherit system; };
+  in
+  {
+    default = pkgs.mkShell {
+      buildInputs = [
+        pkgs.git
+        pkgs.nodejs
+      ];
+    };
+  }
       );
 
       # The platform the configuration will be used on.
