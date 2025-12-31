@@ -113,6 +113,8 @@
               # Add Python + pytest
               (pkgs.python3.withPackages (ps: [
                 ps.pytest
+                ps.mypy
+                ps.more-itertools
               ]))
             ];
           };
