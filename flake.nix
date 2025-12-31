@@ -37,115 +37,65 @@
 
       # User configuration
       users = {
-        grabowskip = {
+        michalkowalik = {
           avatar = ./files/avatar/face;
-          email = "grabowskip@icloud.com";
-          fullName = "Patryk Grabowski";
-          name = "grabowskip";
-        };
-        "michalkowalik" = {
-          inherit (users.grabowskip)
-            avatar
-            ;
           email = "mich.kowalik@gmail.com";
-    fullName = "Michał Kowalik";
+          fullName = "Michał Kowalik";
           name = "michalkowalik";
         };
       };
 
-      # Function for NixOS system configuration
-      mkNixosConfiguration =
+      # Function for nix-darwin system configuration
+      mkDarwinConfiguration =
         hostname: username:
-        nixpkgs.lib.nixosSystem {
+        nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+
           specialArgs = {
             inherit inputs outputs hostname;
             userConfig = users.${username};
-            nixosModules = "${self}/modules/nixos";
-          };
-          modules = [
-            catppuccin.nixosModules.catppuccin
-            ./hosts/${hostname}
-          ];
-        };
-
-      # Function for nix-darwin system configuration
-      mkDarwinConfiguration =
-  hostname: username:
-  nix-darwin.lib.darwinSystem {
-    system = "aarch64-darwin";
-
-    specialArgs = {
-      inherit inputs outputs hostname;
-      userConfig = users.${username};
-      darwinModules = "${self}/modules/darwin";
-      nhModules = "${self}/modules/home-manager";
-    };
-
-    modules = [
-      ./hosts/${hostname}
-
-      # Enable Home Manager as a nix-darwin module
-      home-manager.darwinModules.home-manager
-
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-
-        home-manager.extraSpecialArgs = {
-          inherit inputs outputs hostname;
-          userConfig = users.${username};
-          nhModules = "${self}/modules/home-manager";
-        };
-
-        home-manager.users.${username} = {
-          imports = [
-            ./home/${username}/${hostname}
-            catppuccin.homeModules.catppuccin
-          ];
-        };
-      }
-
-    ];
-  };
-
-
-
-      # Function for Home Manager configuration (linux)
-      mkHomeConfiguration =
-        system: username: hostname:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { inherit system; };
-          extraSpecialArgs = {
-            inherit inputs outputs hostname;
-            userConfig = users.${username};
+            darwinModules = "${self}/modules/darwin";
             nhModules = "${self}/modules/home-manager";
           };
+
           modules = [
-            ./home/${username}/${hostname}
-            catppuccin.homeModules.catppuccin
+            ./hosts/${hostname}
+
+            # Enable Home Manager as a nix-darwin module
+            home-manager.darwinModules.home-manager
+
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+
+              home-manager.extraSpecialArgs = {
+                inherit inputs outputs hostname;
+                userConfig = users.${username};
+                nhModules = "${self}/modules/home-manager";
+              };
+
+              home-manager.users.${username} = {
+                imports = [
+                  ./home/${username}/${hostname}
+                  catppuccin.homeModules.catppuccin
+                ];
+              };
+            }
           ];
         };
     in
     {
       packages = forAllSystems (system:
-  let
-    pkgs = import nixpkgs { inherit system; };
-  in
-  {
-    default = pkgs.hello;
-  }
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        {
+          default = pkgs.hello;
+        }
       );
-
-      nixosConfigurations = {
-        skocznia = mkNixosConfiguration "skocznia" "grabowskip";
-      };
 
       darwinConfigurations = {
         air-kw = mkDarwinConfiguration "air-kw" "michalkowalik";
-      };
-
-      homeConfigurations = {
-        "grabowskip@skocznia" = mkHomeConfiguration "x86_64-linux" "grabowskip" "skocznia";
       };
 
       overlays = import ./overlays { inherit inputs; };
@@ -168,7 +118,6 @@
           };
         }
       );
-
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";

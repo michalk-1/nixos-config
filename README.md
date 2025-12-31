@@ -24,7 +24,6 @@
 - **hardware**: Provides NixOS modules to optimize settings for different hardware.
 - **catppuccin**: Provides global Catppuccin theme integration.
 - **nix-flatpak**: Provides a declarative way to manage Flatpaks.
-- **plasma-manager**: A declarative manager for the KDE Plasma desktop environment.
 
 ## Usage
 
@@ -93,22 +92,6 @@ To add a new machine with a new user to your NixOS or nix-darwin configuration, 
 
    c. Add the basic configuration to `default.nix`:
 
-   For NixOS:
-
-   ```nix
-   { inputs, hostname, nixosModules, ... }:
-   {
-     imports = [
-       inputs.hardware.nixosModules.common-cpu-amd
-       ./hardware-configuration.nix
-       "${nixosModules}/common"
-       "${nixosModules}/desktop/hyprland"
-     ];
-
-     networking.hostName = hostname;
-   }
-   ```
-
    For nix-darwin:
 
    ```nix
@@ -120,8 +103,6 @@ To add a new machine with a new user to your NixOS or nix-darwin configuration, 
      # Add machine-specific configurations here
    }
    ```
-
-   d. For NixOS, generate `hardware-configuration.nix`:
 
    ```sh
    sudo nixos-generate-config --show-hardware-config > hosts/newmachine/hardware-configuration.nix
@@ -153,34 +134,16 @@ To add a new machine with a new user to your NixOS or nix-darwin configuration, 
    a. Commit new files to git:
 
    ```sh
-   git add .
+   git add --a
    ```
 
    b. Build and switch to the new system configuration:
-
-   For NixOS:
-
-   ```sh
-   sudo nixos-rebuild switch --flake .#newmachine
-   ```
 
    For nix-darwin (requires Nix and nix-darwin installation first):
 
    ```sh
    darwin-rebuild switch --flake .#newmachine
    ```
-
-   c. Build and switch to the new Home Manager configuration:
-
-> [!IMPORTANT]
-> On fresh systems, bootstrap Home Manager first:
-
-```sh
-nix-shell -p home-manager
-home-manager switch --flake .#newuser@newmachine
-```
-
-After this initial setup, you can rebuild configurations separately and home-manager will be available without additional steps
 
 ## Updating Flakes
 
@@ -189,4 +152,3 @@ To update all flake inputs to their latest versions:
 ```sh
 nix flake update
 ```
-

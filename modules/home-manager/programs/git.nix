@@ -4,8 +4,8 @@
 
     settings = {
       user = {
-        name = "Patryk Grabowski";
-        email = "grabowskip@icloud.com";
+        name = "Michał Kowalik";
+        email = "mich.kowalik@gmail.com";
       };
 
       blame = {
