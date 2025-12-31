@@ -151,17 +151,17 @@
       overlays = import ./overlays { inherit inputs; };
 
       devShells = forAllSystems (system:
-  let
-    pkgs = import nixpkgs { inherit system; };
-  in
-  {
-    default = pkgs.mkShell {
-      buildInputs = [
-        pkgs.git
-        pkgs.nodejs
-      ];
-    };
-  }
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        {
+          default = pkgs.mkShell {
+            buildInputs = [
+              pkgs.git
+              pkgs.nodejs
+            ];
+          };
+        }
       );
 
       # The platform the configuration will be used on.
