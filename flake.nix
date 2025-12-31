@@ -159,10 +159,16 @@
             buildInputs = [
               pkgs.git
               pkgs.nodejs
+
+              # Add Python + pytest
+              (pkgs.python3.withPackages (ps: [
+                ps.pytest
+              ]))
             ];
           };
         }
       );
+
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
