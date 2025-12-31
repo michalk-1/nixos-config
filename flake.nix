@@ -88,18 +88,23 @@
       home-manager.darwinModules.home-manager
 
       {
-        # HM integration settings
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
+
         home-manager.extraSpecialArgs = {
           inherit inputs outputs hostname;
           userConfig = users.${username};
           nhModules = "${self}/modules/home-manager";
         };
 
-        # Your user’s HM config
-        home-manager.users.${username} = import ./home/${username}/${hostname};
+        home-manager.users.${username} = {
+          imports = [
+            ./home/${username}/${hostname}
+            catppuccin.homeModules.catppuccin
+          ];
+        };
       }
+
     ];
   };
 
