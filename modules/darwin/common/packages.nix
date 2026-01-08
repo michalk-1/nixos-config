@@ -5,6 +5,7 @@
   ];
   # Packages that will be installed in all NixOS installations
   environment.systemPackages = with pkgs; [
+    discord
     hidden-bar
     raycast
     stats

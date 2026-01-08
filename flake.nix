@@ -85,7 +85,8 @@
         };
     in
     {
-      packages = forAllSystems (system:
+      packages = forAllSystems (
+        system:
         let
           pkgs = import nixpkgs { inherit system; };
         in
@@ -100,7 +101,8 @@
 
       overlays = import ./overlays { inherit inputs; };
 
-      devShells = forAllSystems (system:
+      devShells = forAllSystems (
+        system:
         let
           pkgs = import nixpkgs { inherit system; };
         in
@@ -112,9 +114,10 @@
 
               # Add Python + pytest
               (pkgs.python3.withPackages (ps: [
-                ps.pytest
-                ps.mypy
                 ps.more-itertools
+                ps.mypy
+                ps.pytest
+                ps.ruff
               ]))
             ];
           };
