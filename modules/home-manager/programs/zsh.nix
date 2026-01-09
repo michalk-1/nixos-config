@@ -29,7 +29,7 @@
 
     shellAliases =
       let
-        flakeDir = "~/nixos-config";
+        flakeDir = "~/projects/nixos-config";
       in
       {
         rb = (

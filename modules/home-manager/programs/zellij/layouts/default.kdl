@@ -13,7 +13,7 @@ layout {
   }
 
   // Tabs
-  tab name="nixos-config (root)" cwd="~/nixos-config" split_direction="vertical" {
+  tab name="nixos-config (root)" cwd="~/projects/nixos-config" split_direction="vertical" {
     pane command="nvim" {
       focus true
     }
