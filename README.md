@@ -150,5 +150,5 @@ To add a new machine with a new user to your NixOS or nix-darwin configuration, 
 To update all flake inputs to their latest versions:
 
 ```sh
-nix flake update
+nix flake update --commit-lock-file
 ```

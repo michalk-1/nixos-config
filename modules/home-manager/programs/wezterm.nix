@@ -7,7 +7,7 @@
     enable = true;
     extraConfig =
       let
-        font-size = "14";
+        font-size = "12";
       in
       ''
         local wezterm = require('wezterm')

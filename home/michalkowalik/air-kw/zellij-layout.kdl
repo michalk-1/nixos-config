@@ -1,5 +1,17 @@
 layout {
   // Templates
+  pane_template name="nvim" {
+    command "nvim"
+    borderless true
+  }
+  pane_template name="lazygit" {
+    command "lazygit"
+    args "-sm" "half"
+  }
+  pane_template name="develop" {
+    command "nix"
+    args "develop" "../nixos-config" "--command" "zsh" "-il"
+  }
   default_tab_template {
     pane size=1 borderless=true {
       plugin location="zellij:tab-bar"
@@ -11,15 +23,77 @@ layout {
       plugin location="zellij:status-bar"
     }
   }
+  // =========================================
+  // Tab templates
+  // =========================================
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    pane split_direction="Vertical" {
+      children
+    }
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+  tab_template name="project-view" {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    pane split_direction="vertical" {
+      pane split_direction="horizontal" {
+        nvim size="80%" {
+          focus true
+        }
 
+        pane split_direction="vertical" {
+          pane
+          pane
+        }
+      }
+      pane size="25%" split_direction="horizontal" {
+        lazygit
+        children
+      }
+    }
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+  tab_template name="project-view-python" {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    pane split_direction="horizontal" {
+      pane size="70%" split_direction="vertical" {
+        nvim {
+          focus true
+        }
+        nvim
+      }
+      pane split_direction="vertical" {
+        develop
+        develop
+      }
+    }
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
   // Tabs
-  tab name="nixos-config (root)" cwd="~/projects/nixos-config" split_direction="vertical" {
+  tab name="nixos-config" cwd="~/projects/nixos-config" split_direction="vertical" {
     pane command="nvim" {
       focus true
     }
     pane size="25%" split_direction="horizontal" {
+      lazygit
       pane
       pane
     }
   }
+  tab name="Resources" cwd="~" {
+    pane borderless=true command="btop"
+  }
+  project-view-python name="life" cwd="~/projects/life"
 }
