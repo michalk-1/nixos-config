@@ -86,14 +86,11 @@ layout {
     pane command="nvim" {
       focus true
     }
-    pane size="25%" split_direction="horizontal" {
-      lazygit
-      pane
-      pane
-    }
+    pane size="25%" command="lazygit"
   }
+  project-view-python name="life" cwd="~/projects/life"
+  project-view-python name="term" cwd="~/projects/term"
   tab name="Resources" cwd="~" {
     pane borderless=true command="btop"
   }
-  project-view-python name="life" cwd="~/projects/life"
 }
