@@ -1,5 +1,7 @@
 layout {
-  // Templates
+  // =========================================
+  // Pane templates
+  // =========================================
   pane_template name="nvim" {
     command "nvim"
     borderless true
@@ -11,17 +13,6 @@ layout {
   pane_template name="develop" {
     command "nix"
     args "develop" "../nixos-config" "--command" "zsh" "-il"
-  }
-  default_tab_template {
-    pane size=1 borderless=true {
-      plugin location="zellij:tab-bar"
-    }
-    pane split_direction="Vertical" {
-      children
-    }
-    pane size=2 borderless=true {
-      plugin location="zellij:status-bar"
-    }
   }
   // =========================================
   // Tab templates
@@ -43,7 +34,7 @@ layout {
     }
     pane split_direction="vertical" {
       pane split_direction="horizontal" {
-        nvim size="80%" {
+        nvim size="70%" {
           focus true
         }
 
@@ -52,7 +43,7 @@ layout {
           pane
         }
       }
-      pane size="25%" split_direction="horizontal" {
+      pane size="35%" split_direction="horizontal" {
         lazygit
         children
       }
@@ -67,10 +58,11 @@ layout {
     }
     pane split_direction="horizontal" {
       pane size="70%" split_direction="vertical" {
-        nvim {
+        nvim size="33%" {
           focus true
         }
-        nvim
+        nvim size="33%"
+        pane size="34%" command="lazygit"
       }
       pane split_direction="vertical" {
         develop
@@ -81,13 +73,10 @@ layout {
       plugin location="zellij:status-bar"
     }
   }
+  // =========================================
   // Tabs
-  tab name="nixos-config" cwd="~/projects/nixos-config" split_direction="vertical" {
-    pane command="nvim" {
-      focus true
-    }
-    pane size="25%" command="lazygit"
-  }
+  // =========================================
+  project-view name="nixos-config" cwd="~/projects/nixos-config"
   project-view-python name="life" cwd="~/projects/life"
   project-view-python name="term" cwd="~/projects/term"
   tab name="Resources" cwd="~" {
