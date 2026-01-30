@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     ffmpeg
     fnm
+    hatch
     nodejs_22
     neovim
     poetry
