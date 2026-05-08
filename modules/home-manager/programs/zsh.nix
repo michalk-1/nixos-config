@@ -116,6 +116,7 @@
       --color=border:#6C7086,label:#CDD6F4"
 
             export PATH="$HOME/.rd/bin:$PATH"
+            export PATH="$HOME/.bun/bin:$PATH"
     '';
     initContent = ''
             # Darwin doesn't use envExtra for some reason, so we duplicate it here
@@ -127,6 +128,7 @@
       --color=border:#6C7086,label:#CDD6F4"
 
             export PATH="$HOME/.rd/bin:$PATH"
+            export PATH="$HOME/.bun/bin:$PATH"
 
             # fzf https://github.com/Aloxaf/fzf-tab
             # # disable sort when completing `git checkout`
