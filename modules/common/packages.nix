@@ -5,6 +5,8 @@
     ffmpeg
     fnm
     hatch
+    telegram-desktop
+    codex
     nodejs_22
     neovim
     poetry
