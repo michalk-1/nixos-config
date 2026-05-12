@@ -2,17 +2,17 @@
 {
   # Packages that will be installed in both NixOS and darwin
   environment.systemPackages = with pkgs; [
+    codex
     ffmpeg
     fnm
     hatch
-    telegram-desktop
-    codex
-    nodejs_22
     neovim
+    nodejs_22
     poetry
     prettierd
     silver-searcher
     starship
+    telegram-desktop
     tree
     uv
   ];
