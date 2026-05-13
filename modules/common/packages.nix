@@ -7,8 +7,10 @@
     fnm
     git
     hatch
+    hyperfine
     neovim
     nodejs_22
+    nushell
     poetry
     prettierd
     signal-cli
