@@ -5,14 +5,18 @@
     codex
     ffmpeg
     fnm
+    git
     hatch
     neovim
     nodejs_22
     poetry
     prettierd
+    signal-cli
     silver-searcher
+    soco-cli
     starship
     telegram-desktop
+    tldr
     tree
     uv
   ];
