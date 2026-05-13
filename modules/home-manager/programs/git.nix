@@ -68,11 +68,11 @@
       };
 
       branch = {
-        sort = "-commiterdate";
+        sort = "-committerdate";
       };
 
       tag = {
-        sort = "-commiterdate";
+        sort = "-committerdate";
       };
 
       color.blame = {
